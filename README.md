@@ -14,7 +14,7 @@ Are you planning a bike tour and want to know how much time you need? **Then gra
 
 Screenshot
 ----
-![pace_calculation](https://ibb.co/MCjvhYy)
+![pace_calculation](https://i.ibb.co/FDfrWSk/screenshot.jpg)
 
 License
 ----
