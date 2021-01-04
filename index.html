@@ -7,40 +7,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="css/style.css">
+
+    
     <title>Pace-Calculation - Cycling</title>
-
-    <style>
-        .range-wrap {
-            position: relative;
-            margin: 0 auto 3rem;
-        }
-
-        .range {
-            width: 100%;
-        }
-
-        .bubble {
-            background: rgb(117, 117, 117);
-            color: white;
-            padding: 4px 12px;
-            position: absolute;
-            border-radius: 4px;
-            left: 50%;
-            top: 75%;
-            transform: translateX(-50%);
-        }
-
-        .bubble::after {
-            content: "";
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgb(117, 117, 117);
-            top: -1px;
-            left: 50%;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -68,7 +38,7 @@
                             <div class="col-1 fs-1">:</div>
                             <div class="col-3 fs-1" id="ssecR">00</div>
                         </div>
-                        <div class="row"> 
+                        <div class="row">
                             <div class="col-3 fs-6">HH</div>
                             <div class="col-1 fs-6"></div>
                             <div class="col-3 fs-6">MM</div>
@@ -86,66 +56,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    // CALCULATION
-    $(document).ready(function(){
-        $("#distanceR").keyup(function(){
-            calculate();
-
-        });
-        $("#kmhR").change(function(){
-            calculate();
-        });
-    });
-
-    function calculate() {
-        var distance = Number(document.getElementById('distanceR').value);
-        var speed = Number(document.getElementById('kmhR').value);
-
-        if (distance > 0 && speed > 0) {
-            //*when distance + speed
-            resulZeit = (distance * 60) / speed;
-            resultHundred = (5 * 60) / speed;
-
-            document.getElementById('shoursR').innerHTML = Math.floor(resulZeit / 60);
-            document.getElementById('sminR').innerHTML = Math.floor(resulZeit % 60);
-            document.getElementById('ssecR').innerHTML = Math.round(Math.floor((resulZeit % 1) * 100) / 100 * 60);
-
-        } else {
-            document.getElementById('kmhR').value = 30;
-            document.getElementById('distanceR').style.border = "3px solid rgba(174, 0, 0, 0.5)";
-            
-        }
-    }
-
-    // DARKMODE
-    function addDarkmodeWidget() {
-        new Darkmode().showWidget();
-    }
-    window.addEventListener('load', addDarkmodeWidget);
-
-
-    // SLIDER
-    const allRanges = document.querySelectorAll(".range-wrap");
-    allRanges.forEach(wrap => {
-        const range = wrap.querySelector(".range");
-        const bubble = wrap.querySelector(".bubble");
-
-        range.addEventListener("input", () => {
-            setBubble(range, bubble);
-        });
-        setBubble(range, bubble);
-    });
-
-    function setBubble(range, bubble) {
-        const val = range.value;
-        const min = range.min ? range.min : 0;
-        const max = range.max ? range.max : 100;
-        const newVal = Number(((val - min) * 100) / (max - min));
-        bubble.innerHTML = val;
-
-        // Sorta magic numbers based on size of the native UI thumb
-        bubble.style.left = `calc(${newVal}% + (${6 - newVal * 0.15}px))`;
-    }
-</script>
+<script src="js/main.js"></script>
 </html>
